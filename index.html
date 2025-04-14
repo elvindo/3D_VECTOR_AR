@@ -8,8 +8,8 @@
   <style>
     body {
       margin: 0;
-      background-color: #fff;
       font-family: sans-serif;
+      background: #fff;
     }
     model-viewer {
       width: 100vw;
@@ -20,10 +20,10 @@
       bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0,0,0,0.7);
-      color: white;
-      padding: 10px 20px;
-      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
       display: none;
       max-width: 90vw;
       z-index: 10;
@@ -40,24 +40,25 @@
 </head>
 <body>
 
-  <model-viewer src="number_systems_textured_final.glb"
+  <model-viewer src="system_bilangan_concentric.glb"
                 ar ar-modes="scene-viewer webxr quick-look"
                 camera-controls
                 auto-rotate
                 exposure="1"
                 shadow-intensity="1"
-                alt="Diagram Sistem Bilangan">
+                alt="Model Sistem Bilangan">
 
-    <!-- Hotspot interaktif -->
-    <button slot="hotspot-1" data-position="0.3 0.4 0" onclick="showInfo('Natural')">N</button>
-    <button slot="hotspot-2" data-position="0.1 0.1 0" onclick="showInfo('Integer')">Z</button>
-    <button slot="hotspot-3" data-position="-0.2 0.1 0" onclick="showInfo('Rational')">Q</button>
-    <button slot="hotspot-4" data-position="-0.35 -0.1 0" onclick="showInfo('Real')">R</button>
-    <button slot="hotspot-5" data-position="0 -0.4 0" onclick="showInfo('Complex')">C</button>
+    <!-- Hotspot tombol di sekitar lingkaran -->
+    <button slot="hotspot-1" data-position="0.05 0.03 0" onclick="showInfo('Natural')">N</button>
+    <button slot="hotspot-2" data-position="0.25 0.03 0" onclick="showInfo('Integer')">Z</button>
+    <button slot="hotspot-3" data-position="0.45 0.03 0" onclick="showInfo('Rational')">Q</button>
+    <button slot="hotspot-4" data-position="0.65 0.03 0" onclick="showInfo('Real Algebraic')">RA</button>
+    <button slot="hotspot-5" data-position="0.85 0.03 0" onclick="showInfo('Real')">R</button>
+    <button slot="hotspot-6" data-position="1.05 0.03 0" onclick="showInfo('Complex')">C</button>
 
   </model-viewer>
 
-  <!-- Box informasi -->
+  <!-- Kotak penjelasan -->
   <div id="infoBox" class="info-box"></div>
 
   <script>
@@ -73,13 +74,16 @@
           content = 'Bilangan bulat mencakup negatif, nol, dan positif.';
           break;
         case 'Rational':
-          content = 'Bilangan yang bisa ditulis sebagai a/b.';
+          content = 'Bilangan yang dapat ditulis sebagai a/b.';
+          break;
+        case 'Real Algebraic':
+          content = 'Bilangan real yang merupakan solusi dari persamaan polinomial.';
           break;
         case 'Real':
-          content = 'Semua bilangan di garis bilangan.';
+          content = 'Bilangan yang bisa ditempatkan di garis bilangan nyata.';
           break;
         case 'Complex':
-          content = 'Bilangan yang memiliki bagian imajiner, seperti a + bi.';
+          content = 'Bilangan yang memiliki bagian imajiner seperti a + bi.';
           break;
         default:
           content = 'Informasi belum tersedia.';
@@ -90,8 +94,9 @@
 
       setTimeout(() => {
         infoBox.style.display = 'none';
-      }, 5000);
+      }, 6000);
     }
   </script>
+
 </body>
 </html>
